@@ -437,8 +437,8 @@ jobs:
           load: true
           push: false
           tags: |
-            sesh97/devsecops-udemy:${{ github.sha }}
-            sesh97/devsecops-udemy:latest
+            sesh97/decsecops-udemy:${{ github.sha }}
+            sesh97/decsecops-udemy:latest
 
       - name: Install Trivy
         uses: aquasecurity/setup-trivy@v0.2.6
