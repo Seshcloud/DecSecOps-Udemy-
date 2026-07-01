@@ -406,7 +406,7 @@ jobs:
       - name: Build client
         run: npm run build --if-present
 
-  docker:
+    docker:
     name: Docker Build, Scan and Push
     runs-on: ubuntu-latest
     needs:
@@ -440,6 +440,9 @@ jobs:
             sesh97/decsecops-udemy:${{ github.sha }}
             sesh97/decsecops-udemy:latest
 
+      - name: Check local Docker images
+        run: docker images
+
       - name: Install Trivy
         uses: aquasecurity/setup-trivy@v0.2.6
         with:
@@ -453,7 +456,7 @@ jobs:
 
       - name: Run Trivy Docker image scan JSON
         run: |
-          trivy image sesh97/devsecops-udemy:${{ github.sha }} \
+          trivy image sesh97/decsecops-udemy:${{ github.sha }} \
             --format json \
             --output docker-image-trivy-report.json \
             --severity HIGH,CRITICAL \
@@ -462,7 +465,7 @@ jobs:
 
       - name: Run Trivy Docker image scan TABLE
         run: |
-          trivy image sesh97/devsecops-udemy:${{ github.sha }} \
+          trivy image sesh97/decsecops-udemy:${{ github.sha }} \
             --format table \
             --severity HIGH,CRITICAL \
             --ignore-unfixed \
